@@ -1,0 +1,62 @@
+anotacoes JPA
+
+java persistence api
+
+Hbernate
+
+ORM - object relational mapping
+
+JPA é abstracao.
+
+hibernate é implementacao do JPA	
+
+EclipseLink e OpenJPA - outras implementacoes
+
+para usar o hibernate, voce adiciona no pom.xml
+
+a dependencia h2.database é um banco de dados em memoria para nao se preocupar com configuracoes de banco de dados 
+
+tags de configuracao do jpa ficam no src/main/resources -> persistence.xml
+
+
+tag transaction-type tem valores JTA ou resource local
+
+
+persistence unit é uma tag para cada banco de dados
+
+se o nome da coluna no BD for diferente do nome do atributo no codigo voce adiciona -> @Column(name = "desc")
+
+@Id para definir a chave primaria do BD
+
+o id é gerado pelo BD, entao é necessrio avisar ao java com a anotacao @GeneratedValue
+
+é necessario adicionar no persistence.xml -> as classes criadas com associcao ao BD -> 
+<class>br.com.brlaura.loja.modelo.produto</class>
+o hibernate faz isso automatico, entao não é necessario se tiver usando o hibernate
+
+ao inserir dado no banco de dados, 
+em.getTransaction.begin
+...
+produtoDao.cadastrar(celular)
+...
+em.getTransaction.commit
+em.close
+
+é necessario criar as tabelas, com a propriedade, hibernate.hbm2ddl.auto value create
+value create-drop - cria e quando terminar de usar ele apaga
+value update - adiciona nova mudanca se houver
+value validate - valida se o banco esta ok
+
+anotacao para ele enumerar a partir de uma categoria
+@Enumerated(EnumType.STRING)
+
+cilco de vida da JPA -> transient -> managed -> detached -> bd
+ativar o persist() -> fica gerenciavel
+commit(0 -> passa pro BD
+merge-> sai do estado detashed e pode ser commitado novamente
+merge aponta para uma nova entidade.
+
+busca usando jpql -> coloca a frase de busca. :nome - parametro que ira ser passado
+.setParameter("nome",nome) -> primeiro é o nome do parametro. segundao é variavel que estou passando para esse parametro
+é possivel colocar parametro ?1 -> no setparametrer(1,nome)
+

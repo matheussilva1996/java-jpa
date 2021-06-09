@@ -1,0 +1,46 @@
+anotacoes jpa
+
+crtl shift f - formatacao texto
+
+JPA necessita do construitor default vazio
+
+
+quando voce configura o link dos dois lados do BD, necessario @OneToMany(mappedBy = "pedido")
+
+adicionarItem
+é adicionado 2 funcoes
+item.setPedido
+this.getItens.add(item)
+parametro cascade ele faz tudo com os relacionados operacoes em cascata
+
+funcoes dentro do BD, SUM, MIN,MAX, AVG
+
+dentro do jpql a linguagem permite usar funcao sum para somar valor total
+
+select so pode ter uma entidade. 
+mas pode ser feito select new relatorio de vendas vo. e ai funciona
+
+na propria entidade do produto
+adicionando @namedQuery -> recurso do jpa que permite deixar a busca do jpql direto na classe
+
+problemas de perfomace pode acontecer quando voce usa o manytoone ou onetoone -> to one comportamento eager (carrega tudo na memoria)
+
+ja o onetomany ou manytomany nao ocorre isso pois é uma lista e pode ser pesado. -> tomany comportamento lazy (carrega quando precisa)
+
+todo carregamento toone colocar o fetchTYPE LAZY
+
+usando o lazy, pode ser que o entity manager seja fechado e ele nao retorne a busca esperado, para resolver isso voce tem que fazer uma busca planejada, o qual faz a busca direto com o cliente. usando JOIN FETCH
+
+
+novo metodo busca por parametros onde filtra por qual categoria voce quer buscar. nao te amarra apenas no nome preco ou data
+
+
+usando o criteria, fica mais simples e com menos if dentro da funcao. declarando o query.from. ele ja sabe que o produto é o sleect e from
+
+na classe dados pessoais o @embeddble marca que a classe é inbutida na classe cliente. na classe cliente em cima de dados pessoais voce coloca o @embedded
+
+para herdar herancas, como outros objetos usa em cima de produto @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
+outra estrategia é criar novas tabelas juntanto a tabela principal produto @Inheritance(strategy = InheritanceType.JOINED)
+
+o embeddedID usado para ele saber que aquela classe vai ser um chave primaria da tabela
